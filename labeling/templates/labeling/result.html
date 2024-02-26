@@ -1,0 +1,55 @@
+<head>
+    <link rel="icon" type="image/ico" href="static/favicon.ico">
+</head>
+<body>
+    {% extends 'labeling/base.html' %}
+{% csrf_token %}
+{% block content %}
+    <h2>Результаты классификации</h2>
+    <button id = 'Open_json'> Открыть </button>
+    <a href = "#" class="closer"></a>
+    <div id="tableContainer">
+    <table id="resultTable">
+        <thead>
+            <tr>
+                <th id = "number" class = "hidden_res"> № </th>
+                <th id = "Tag_th" class = "hidden_res">Тег</th>
+                <th id = "Name_th" class = "hidden_res">Имя</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Данные будут добавлены здесь -->
+        </tbody>
+    </table>
+</div>
+<button id = "run_regular_text">Обработка через регулярные выражения </button>
+<input type="file" id="text_inp" accept="text/*" style = "display: none;">
+            <div style = "dispaly: none">
+                <button id = "custom-text">Загрузить текст</button>
+                <div id="text-text" style = "display: none"></div>
+                
+                <div id="tableContainer">
+                    <table id="json-table">
+                        
+                        <thead>
+                            <tr>
+                                <th id = "Tag_th" class = "hidden_res">Поле</th>
+                                <th id = "Name_th" class = "hidden_res">Значение</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                
+                <a id = "back" href = "{% url 'label_text' %}">Назад</a>
+                <span id="loader" class="loader">Load&nbsp;ng</span>
+    {% load static %}
+    <link rel="icon" type="image/ico" href="{% static 'favicon.ico' %}">
+    <link rel="icon" type="image/png" href="{% static 'favicon-16x16.png' %}">
+    <link rel="icon" type="image/png" href="{% static 'favicon-32x32.png' %}">
+    <link rel="stylesheet" type="text/css" id = "myStyleSheet" href="{% static 'labeling/css/style.css' %}?v=2">
+    <script src="{% static 'labeling/js/result_text.js' %}"></script>
+    
+    {%  endblock  %}
+</body>
+</html>

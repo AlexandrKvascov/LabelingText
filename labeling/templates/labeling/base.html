@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <title>{% block title %}Analog Label Studio{% endblock %}</title>
+    {% comment %} <meta http-equiv="refresh" content="10"> {% endcomment %}
+    {% comment %} {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'labeling/css/style.css' %}"> {% endcomment %}
+    {% comment %} <script src="{% static 'labeling/js/label_text.js' %}"></script> {% endcomment %}
+</head>
+<body>
+    <header>
+        <nav>
+            <!-- Navigation menu -->
+        </nav>
+    </header>
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    
+    <footer>
+        <!-- Footer content -->
+    </footer>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!-- labeling/templates/labeling/label_text.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Label Studio Аналог</title>
+</head>
+<body>
+    <h1>Разметка текста</h1>
+    <form method="post">
+        {% csrf_token %}
+        <textarea name="text" rows="4" cols="50">{{ unlabeled_data.text }}</textarea><br>
+        <input type="text" name="label" placeholder="Метка"><br>
+        <input type="submit" value="Сохранить">
+    </form>
+    <h2>Размеченные данные:</h2>
+    <ul>
+        {% for data in labeled_data %}
+            <li>{{ data.text }} - {{ data.label }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

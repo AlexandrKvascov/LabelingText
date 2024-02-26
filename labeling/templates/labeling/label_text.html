@@ -1,0 +1,109 @@
+<head>
+    <link rel="icon" type="image/ico" href="static/favicon.ico">
+</head>
+<body>
+{% extends 'labeling/base.html' %}
+{% csrf_token %}
+{% block content %}
+<div class="page-container">
+   
+        <a class="close-button" href=""></a>
+        <div class="menu-content" id="menuContent">
+            <p id = "user_name_text">Добро пожаловать, {{ request.session.username }}!</p>
+            <a href="{% url 'login' %}" class = "exit "> выход </a>
+        </div>
+    
+    <h2>Разметка текста</h2>
+</div>
+
+<div id="update-info"></div>
+    <div id = "gosling">
+        <marquee id = "marquee" behavior = "scroll" direction = ""  height = "auto">
+  
+        </marquee>
+        
+    </div>
+    <div id="imageModal" class="modal">
+        <span class="close" id="closeModal">&times;</span>
+        <img class="modal-content" id="modalImage">
+      </div>
+      
+    <div class = "Big_Class">
+        <div class = "Labeling_table">
+            <input type="file" id="file-input" accept=".txt" style="display: none;">
+            <button id="upload-button">Загрузить файл</button>
+            <button type = "button" id = "download-json"> download json</button>
+
+            <input type="file" id="image-input" accept="image/*" style="display: none;">
+            <div style = "dispaly: none"> 
+                <button id="custom-upload-button">Загрузить изображение</button>
+                <div id="image-text" style = "dispaly: none"></div>
+            </div>
+            <button id="runPythonScript">Вызвать pytesseract</button>
+        </div>
+        <button id="showModelTableButton" class="show-button" >Работа с моделью</button>
+        <a href = "#" class="closer"></a>
+        <div class = "Model_Table" id = "Model_Table" style="display: none;">
+            <span id="loader" class="loader">Load&nbsp;ng</span>  
+            <button id="runModel">Вызвать model</button>
+            <a href = "{% url 'result_page' %}" id = "vision_model">Отобразить модель </a>
+            <input type="file" id="passport_inp" accept="text/*" style = "display: none;">
+            <div style = "dispaly: none">
+                <button id = "cutom-upload-text">Загрузить текст</button>
+                <div id="psprt-text" style = "dispaly: none"></div>
+            </div>
+            <input type="file" id="json_inp" accept="json/*" style = "display: none;">
+            <div style = "dispaly: none">
+                <button id = "cutom-upload-json">Размеченный текст</button>
+                <div id="json-text" style = "dispaly: none"></div>
+            </div>
+        </div>
+    </div>    
+    {% comment %} <textarea id="text-to-label" rows="4" cols="50"></textarea>  {% endcomment %}
+    <div id="text-container">
+        <form method="post" id="label-form">
+            {% csrf_token %}
+            <input type="text" name="label" id="label" placeholder="Введите метку">
+            <button type="button" id="add-label">Добавить метку</button>
+            <div id = "ExceptTag">
+                <button id = "TagDetermination" class = "showDeterm">Готовые метки</button>
+                <div id = "tag_name" class = "hidden">
+
+                    <button id="determ_label_id1" class = "inner">Страна</button>
+                    <button id="determ_label_id2" class = "inner">Кем выдан</button>
+                    <button id="determ_label_id3" class = "inner">Дата выдачи</button>
+                    <button id="determ_label_id4" class = "inner">Код</button>
+                    <button id="determ_label_id5" class = "inner">Фамилия</button>
+                    <button id="determ_label_id6" class = "inner">Имя</button>
+                    <button id="determ_label_id7" class = "inner">Отчество</button>
+                    <button id="determ_label_id8" class = "inner">Дата рождения</button>
+                    <button id="determ_label_id9" class = "inner">Место рождения</button>
+
+                </div>
+            </div>
+        </form>
+        <p id="text-to-label" contenteditable="true" class = "text_label">
+            
+        </p>
+        <button id="edit-button">Редактировать</button>
+        <button id="save-button">Сохранить</button>
+        <a id="downloadLink" style="display: none">Скачать</a>
+        <div id = "scrollLock">
+           
+        </div>
+    </div>
+    
+    <!-- Подключение CSS и JavaScript -->
+    {% load static %}
+    <link rel="icon" type="image/ico" href="{% static 'favicon.ico' %}">
+    <link rel="icon" type="image/png" href="{% static 'favicon-16x16.png' %}">
+    <link rel="icon" type="image/png" href="{% static 'favicon-32x32.png' %}">
+    <link rel="stylesheet" type="text/css" id = "myStyleSheet" href="{% static 'labeling/css/style.css' %}?v=2">
+    <link rel="stylesheet/less" type="text/css" id = "myStyleSheet" href="{% static 'labeling/css/styles.less' %}?v=2">
+    <link rel="stylesheet/scss" type="text/css" id = "myStyleSheet" href="{% static 'labeling/css/styless.scss' %}?v=2">
+    <script src="{% static 'labeling/js/label_text.js' %}"></script>
+    <script src="{% static 'labeling/js/run_python.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/less" ></script>
+{%  endblock  %}
+</body>
+</html>

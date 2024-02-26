@@ -1,0 +1,71 @@
+.transition (@prop: all, @time: 1s, @ease: ease-out) {
+    -webkit-transition : @prop @time @ease;
+    -moz-transition    : @prop @time @ease;
+    -ms-transition     : @prop @time @ease;
+    -o-transition      : @prop @time @ease;
+    transition         : @prop @time @ease;
+  }
+  .rotate(@degrees) {
+    -webkit-transform : rotate(@degrees);
+    -moz-transform    : rotate(@degrees);
+    -ms-transform     : rotate(@degrees);
+    -o-transform      : rotate(@degrees);
+    transform         : rotate(@degrees);
+  }
+  
+  .square( @size ){
+    width: @size;
+    height: @size;
+  }
+  
+  @black : #000;
+  @white : #fff;
+  
+  
+  .close-button{
+    .square(50px);
+    box-shadow : 0px 10 10px 10px rgba( 0, 0, 0, .25 );
+    border-radius: 10px; 
+    background : @black;
+    left       : 5%;
+    top        : 49%;
+    margin-top : -75px;
+    margin-left: -75px;
+    position   : absolute;
+    display    : block;
+    z-index    : 200;
+    text-indent : -9999px;
+  
+    &:before,
+    &:after{
+      content    : '';
+      width      : 55%;
+      height     : 2px;
+      background : @white;
+      position   : absolute;
+      top        : 48%;
+      left       : 22%;
+      .rotate(-45deg);
+      .transition( @time : 0.3s );
+    }
+  
+    &:after{
+      .rotate(45deg);
+      .transition( @time : 0.3s );
+    }
+  
+  
+  
+    &:hover{
+      &:before,
+      &:after{
+        .rotate(180deg);
+      }
+    }
+  }
+  
+
+//   #menuConten {
+//     display: none;
+//   }
+
